@@ -1,0 +1,44 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: ${sky.datasource.driver-class-name}
+      url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${sky.datasource.username}
+      password: ${sky.datasource.password}
+#      driver-class-name: com.mysql.cj.jdbc.Driver # driver name
+#      url: jdbc:mysql://localhost:3306/juicy_take_out
+#      username: root
+#      password:
+      type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  #mapper configuration
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sky.entity
+  configuration:
+    # camel-case on
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      sky:
+        mapper: debug
+        service: info
+        controller: info
+
+sky:
+  jwt:
+    # Set secret key used for signing and encrypting the JWT
+    admin-secret-key: itcast
+    # set jwt expire time
+    admin-ttl: 7200000
+    # set token name coming from frontend
+    admin-token-name: token
