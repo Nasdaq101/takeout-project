@@ -34,4 +34,8 @@ public interface EmployeeMapper {
      */
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
+    /**
+     * update properties based on id
+     */
+    void update(Employee employee);
 }

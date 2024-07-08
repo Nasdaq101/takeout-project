@@ -101,4 +101,12 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    @PostMapping("/status/{status}")
+    @ApiOperation("start or stop employee account")
+    public Result startOrStop(@PathVariable Integer status, Long id) {
+        log.info("start/stop employee account: {},{}",status, id);
+        employeeService.startOrStop(status, id);
+        return Result.success();
+    }
+
 }

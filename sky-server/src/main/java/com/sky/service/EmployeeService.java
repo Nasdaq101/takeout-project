@@ -28,4 +28,10 @@ public interface EmployeeService {
      */
     PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
+    /**
+     * start or stop employee account
+     * @param status
+     * @param id
+     */
+    void startOrStop(Integer status, Long id);
 }
