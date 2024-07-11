@@ -38,4 +38,12 @@ public interface EmployeeMapper {
      * update properties based on id
      */
     void update(Employee employee);
+
+    /**
+     * search employee by id
+     * @param id
+     * @return
+     */
+    @Select("select * from employee where id= #{id}")
+    Employee getById(Long id);
 }
