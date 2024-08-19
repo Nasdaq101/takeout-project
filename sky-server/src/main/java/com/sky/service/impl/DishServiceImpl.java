@@ -31,7 +31,7 @@ public class DishServiceImpl implements DishService {
     public void saveWithFlavor(DishDTO dishDTO) {
         Dish dish = new Dish();
         BeanUtils.copyProperties(dishDTO,dish);
-        //add one data into dish mapper
+        //add one data into dish mapper.
         dishMapper.insert(dish);
         //get primary key(id) from insert method
         Long dishId = dish.getId();
