@@ -25,7 +25,7 @@ public class DishServiceImpl implements DishService {
 
     /**
      * new dish and its flavor.
-     * @param dishDTO
+     * @param dishDTO dto of dish.
      */
     @Transactional
     public void saveWithFlavor(DishDTO dishDTO) {
@@ -38,10 +38,8 @@ public class DishServiceImpl implements DishService {
 
         //add multiple data into flavor mapper (could be 0)
         List<DishFlavor> flavors = dishDTO.getFlavors();
-        if (flavors!=null && flavors.size()>0) {
-            flavors.forEach(dishFlavor -> {
-                dishFlavor.setDishId(dishId);
-            });
+        if (flavors!=null && !flavors.isEmpty()) {
+            flavors.forEach(dishFlavor -> dishFlavor.setDishId(dishId));
             dishFlavorMapper.insertBatch(flavors);
         }
 
