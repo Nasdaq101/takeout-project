@@ -10,20 +10,21 @@ import java.util.List;
 @Data
 public class DishDTO implements Serializable {
 
+    // dish id
     private Long id;
-    //菜品名称
+    //dish name
     private String name;
-    //菜品分类id
+    //category id
     private Long categoryId;
-    //菜品价格
+    //dish price
     private BigDecimal price;
-    //图片
+    //dish pic
     private String image;
-    //描述信息
+    //dish description
     private String description;
-    //0 停售 1 起售
+    //current status - 0 ban , 1 allow
     private Integer status;
-    //口味
+    // dish flavors
     private List<DishFlavor> flavors = new ArrayList<>();
 
 }
