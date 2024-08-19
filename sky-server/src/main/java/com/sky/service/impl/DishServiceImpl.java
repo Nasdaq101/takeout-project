@@ -24,7 +24,7 @@ public class DishServiceImpl implements DishService {
     private DishFlavorMapper dishFlavorMapper;
 
     /**
-     * new dish and its flavor
+     * new dish and its flavor.
      * @param dishDTO
      */
     @Transactional
