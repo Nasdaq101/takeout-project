@@ -17,7 +17,7 @@ public class MessageConstant {
     public static final String ADDRESS_BOOK_IS_NULL = "cannot place order, need an address!";
     public static final String LOGIN_FAILED = "login failed!";
     public static final String UPLOAD_FAILED = "file upload failed!";
-    public static final String SETMEAL_ENABLE_FAILED = "套餐内包含未启售菜品，无法启售";
+    public static final String SETMEAL_ENABLE_FAILED = "set meal contains banned dish!";
     public static final String PASSWORD_EDIT_FAILED = "password reset failed!";
     public static final String DISH_ON_SALE = "cannot remove dish on sale!";
     public static final String SETMEAL_ON_SALE = "cannot remove setmeal on sale!";
