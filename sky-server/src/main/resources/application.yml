@@ -17,6 +17,11 @@ spring:
 #      username: root
 #      password:
       type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: ${sky.redis.host}
+    port: ${sky.redis.port}
+    database: ${sky.redis.database}
+
 
 mybatis:
   #mapper configuration

@@ -6,9 +6,15 @@ sky:
     database: sky_take_out
     username: root
     password: 123456
+  redis:
+    #    当前要连接的服务ip地址，（本地）
+    host: localhost
+    port: 6379
+    database: 0
 
 alioss:
   endpoint:oss-cn-beijing-aliyuncs.com
   access-key-id:LTAI5tPeFLzsPPT8gG3LPW64
   access_key-secret:Uk61brOZ8gaOIXv3nXbulGTUzy6Pd7
   bucket-name:sky-itcast
+
