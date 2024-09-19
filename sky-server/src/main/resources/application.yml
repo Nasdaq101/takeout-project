@@ -41,12 +41,19 @@ logging:
 
 sky:
   jwt:
+    ######admin interface
     # Set secret key used for signing and encrypting the JWT
     admin-secret-key: itcast
     # set jwt expire time
     admin-ttl: 7200000
     # set token name coming from frontend
     admin-token-name: token
+    ######user-interface
+    # wechat related
+    user-secret-key: itheima
+    user-ttl: 7200000
+    # the same as frontend
+    user-token-name: authentication
 
 #see common/.../properties/AliOssProperties.java
     alioss:
@@ -54,3 +61,7 @@ sky:
       access-key-id:${sky.alioss.access-key-id}
       access-key-secret:${sky.alioss.access-key-secret}
       bucket-name:${sky.alioss.bucket-name}
+    #wechat
+    wechat:
+      appid: ${sky.wechat.appid}
+      secret: ${sky.wechat.secret}
