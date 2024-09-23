@@ -38,6 +38,8 @@ public class DishController {
     public Result save(@RequestBody DishDTO dishDTO) {
         log.info("new dish:{}", dishDTO);
         dishService.saveWithFlavor(dishDTO);
+        String key = "dish_" + dishDTO.getCategoryId();
+        clearRedis(key);
         return Result.success();
     }
 
@@ -54,6 +56,7 @@ public class DishController {
     public Result delete(@RequestParam List<Long> ids){
         log.info("delete dish：{}",ids);
         dishService.deleteBatch(ids);
+        clearRedis("dish_*");
         return Result.success();
     }
 
@@ -70,6 +73,7 @@ public class DishController {
     public Result update(@RequestBody DishDTO dishDTO){
         log.info("update dish info；{}",dishDTO);
         dishService.updateWithFlavor(dishDTO);
+        clearRedis("dish_*");
         return Result.success();
     }
 

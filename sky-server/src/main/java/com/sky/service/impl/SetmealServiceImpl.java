@@ -55,8 +55,9 @@ public class SetmealServiceImpl implements SetmealService {
         Long id = setmeal.getId();
 
         List<SetmealDish> setmealDishes = setmealDTO.getSetmealDishes();
-        setmealDishes.forEach(setmealDish -> setmealDish.setSetmealId(id));
-
+        setmealDishes.forEach(setmealDish -> {
+            setmealDish.setSetmealId(id);
+        });
         setmealDishMapper.insertBatch(setmealDishes);
     }
 

@@ -19,30 +19,31 @@ public class SetmealVO implements Serializable {
 
     private Long id;
 
-    //分类id
+    //categury id
     private Long categoryId;
 
-    //套餐名称
+    //setmeal name
     private String name;
 
-    //套餐价格
+    //setmeal price
     private BigDecimal price;
 
-    //状态 0:停用 1:启用
+    //start 1 stop 0
     private Integer status;
 
-    //描述信息
+    //description info
     private String description;
 
-    //图片
+    //image
     private String image;
 
-    //更新时间
+    //update time
     private LocalDateTime updateTime;
 
-    //分类名称
+    //category name
     private String categoryName;
 
-    //套餐和菜品的关联关系
+    //setmeal and dishes
+    @Builder.Default
     private List<SetmealDish> setmealDishes = new ArrayList<>();
 }
