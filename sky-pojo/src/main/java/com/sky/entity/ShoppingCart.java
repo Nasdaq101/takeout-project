@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * 购物车
+ * shopping cart
  */
 @Data
 @Builder
