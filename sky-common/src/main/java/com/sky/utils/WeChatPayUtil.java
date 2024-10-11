@@ -30,7 +30,7 @@ import java.util.Base64;
 import java.util.List;
 
 /**
- * wechat pay
+ * WECHAT pay
  */
 @Component
 public class WeChatPayUtil {
@@ -56,7 +56,7 @@ public class WeChatPayUtil {
             merchantPrivateKey = PemUtil.loadPrivateKey(new FileInputStream(new File(weChatProperties.getPrivateKeyFilePath())));
             //load certificate
             X509Certificate x509Certificate = PemUtil.loadCertificate(new FileInputStream(new File(weChatProperties.getWeChatPayCertFilePath())));
-            //wechat Pay Certificates
+            //WECHAT Pay Certificates
             List<X509Certificate> wechatPayCertificates = Arrays.asList(x509Certificate);
 
             WechatPayHttpClientBuilder builder = WechatPayHttpClientBuilder.create()
@@ -192,7 +192,7 @@ public class WeChatPayUtil {
             signature.update(message);
             String packageSign = Base64.getEncoder().encodeToString(signature.sign());
 
-            //construct data for wechat app, to initiate wechat pay
+            //construct data for WECHAT app, to initiate WECHAT pay
             JSONObject jo = new JSONObject();
             jo.put("timeStamp", timeStamp);
             jo.put("nonceStr", nonceStr);
