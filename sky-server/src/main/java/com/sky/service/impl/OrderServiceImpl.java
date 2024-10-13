@@ -43,7 +43,6 @@ import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderStatisticsVO;
 import com.sky.vo.OrderSubmitVO;
 import com.sky.vo.OrderVO;
-import com.sky.websocket.WebSocketServer;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -75,9 +74,6 @@ public class OrderServiceImpl implements OrderService {
 
     // @Autowired
     // private UserMapper userMapper;
-
-    @Autowired
-    private WebSocketServer webSocketServer;
 
     /**
      * submit order
@@ -157,7 +153,7 @@ public class OrderServiceImpl implements OrderService {
         paySuccess(ordersPaymentDTO.getOrderNumber());
 
         /**
-         * call wechat payment api, generate a prepayment transaction order
+         * call WECHAT payment api, generate a prepayment transaction order
          */
 //         JSONObject jsonObject = weChatPayUtil.pay(
         // ordersPaymentDTO.getOrderNumber(), // order number
@@ -204,7 +200,6 @@ public class OrderServiceImpl implements OrderService {
         map.put("orderId", ordersDB.getId());
         map.put("content", "order number: " + outTradeNo);
         String msg = JSON.toJSONString(map);
-        webSocketServer.sendToAllClient(msg);
     }
 
     /**
@@ -293,7 +288,7 @@ public class OrderServiceImpl implements OrderService {
 
         // if order under status "to_be_confirmed", require refund
         if (ordersDB.getStatus().equals(Orders.TO_BE_CONFIRMED)) {
-            // call wechat pay/refund api
+            // call WECHAT pay/refund api
             weChatPayUtil.refund(
                     ordersDB.getNumber(), // order number
                     ordersDB.getNumber(), // order-refund number
@@ -557,7 +552,6 @@ public class OrderServiceImpl implements OrderService {
         map.put("type", 2);// 2 represents reminder
         map.put("orderId", id);
         map.put("content", "order number：" + orders.getNumber());
-        webSocketServer.sendToAllClient(JSON.toJSONString(map));
     }
 
 }

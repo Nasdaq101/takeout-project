@@ -60,7 +60,6 @@ public class AliOssUtil {
                 .append(endpoint)
                 .append("/")
                 .append(objectName);
-
         log.info("file uploaded to:{}", stringBuilder.toString());
 
         return stringBuilder.toString();
