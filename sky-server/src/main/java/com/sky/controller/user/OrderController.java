@@ -1,5 +1,6 @@
 package com.sky.controller.user;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,7 @@ public class OrderController {
      * @return
      */
     @PostMapping("/submit")
+    @ApiOperation("Submit order")
     public Result<OrderSubmitVO> submit(@RequestBody OrdersSubmitDTO ordersSubmitDTO) {
         log.info("order submit，ordersSubmitDTO={}", ordersSubmitDTO);
         OrderSubmitVO orderSubmitVO = orderService.submitOrder(ordersSubmitDTO);
@@ -48,6 +50,7 @@ public class OrderController {
      * @return
      */
     @PutMapping("/payment")
+    @ApiOperation("Pay the order")
     public Result<OrderPaymentVO> payment(@RequestBody OrdersPaymentDTO ordersPaymentDTO) throws Exception {
         log.info("order payment：{}", ordersPaymentDTO);
         OrderPaymentVO orderPaymentVO = orderService.payment(ordersPaymentDTO);
@@ -64,6 +67,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/historyOrders")
+    @ApiOperation("Check order history")
     public Result<PageResult> page(int page, int pageSize, Integer status) {
         log.info("get history order，page={},pageSize={},status={}", page, pageSize, status);
         PageResult pageResult = orderService.pageQueryByUser(page, pageSize, status);
@@ -77,6 +81,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/orderDetail/{id}")
+    @ApiOperation("Check order details")
     public Result<OrderVO> details(@PathVariable("id") Long id) {
         OrderVO orderVO = orderService.details(id);
         return Result.success(orderVO);
@@ -88,6 +93,7 @@ public class OrderController {
      * @return
      */
     @PutMapping("/cancel/{id}")
+    @ApiOperation("Cancel order")
     public Result<String> cancel(@PathVariable("id") Long id) throws Exception {
         orderService.userCancelById(id);
         return Result.success();
@@ -100,6 +106,7 @@ public class OrderController {
      * @return
      */
     @PostMapping("/repetition/{id}")
+    @ApiOperation("Repeat order")
     public Result<String> repetition(@PathVariable Long id) {
         orderService.repetition(id);
         return Result.success();
@@ -112,6 +119,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/reminder/{id}")
+    @ApiOperation("User reminder")
     public Result<String> reminder(@PathVariable("id") Long id) {
         orderService.reminder(id);
         return Result.success();

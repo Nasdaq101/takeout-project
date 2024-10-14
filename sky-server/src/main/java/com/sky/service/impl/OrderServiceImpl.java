@@ -558,6 +558,8 @@ public class OrderServiceImpl implements OrderService {
         map.put("type", 2);// 2 represents reminder
         map.put("orderId", id);
         map.put("content", "order number：" + orders.getNumber());
+        String msg = JSON.toJSONString(map);
+        webSocketServer.sendToAllClient(msg);
     }
 
 }
