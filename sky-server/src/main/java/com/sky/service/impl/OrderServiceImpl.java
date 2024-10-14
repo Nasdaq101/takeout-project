@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sky.websocket.WebSocketServer;
 import org.apache.poi.ss.formula.functions.Odd;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private WeChatPayUtil weChatPayUtil;
+
+    @Autowired
+    private WebSocketServer webSocketServer;
 
     // @Autowired
     // private UserMapper userMapper;
@@ -200,6 +204,8 @@ public class OrderServiceImpl implements OrderService {
         map.put("orderId", ordersDB.getId());
         map.put("content", "order number: " + outTradeNo);
         String msg = JSON.toJSONString(map);
+        webSocketServer.sendToAllClient(msg);
+
     }
 
     /**
