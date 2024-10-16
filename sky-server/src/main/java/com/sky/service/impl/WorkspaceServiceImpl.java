@@ -56,7 +56,7 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
         Double unitPrice = 0.0;
 
-        // order completion rate and unit price
+        // order completion rate and average revenue per order
         Double orderCompletionRate = 0.0;
         if (totalOrderCount != 0 && validOrderCount != 0) {
             orderCompletionRate = validOrderCount.doubleValue() / totalOrderCount;
@@ -121,14 +121,14 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     public DishOverViewVO getDishOverView() {
         Map<String, Integer> map = new HashMap<>();
         map.put("status", StatusConstant.ENABLE);
-        Integer sold = dishMapper.countByMap(map);
+        Integer onsale = dishMapper.countByMap(map);
 
         map.put("status", StatusConstant.DISABLE);
-        Integer discontinued = dishMapper.countByMap(map);
+        Integer banned = dishMapper.countByMap(map);
 
         return DishOverViewVO.builder()
-                .sold(sold)
-                .discontinued(discontinued)
+                .sold(onsale)
+                .discontinued(banned)
                 .build();
     }
 
@@ -140,14 +140,14 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     public SetmealOverViewVO getSetmealOverView() {
         Map<String, Integer> map = new HashMap<>();
         map.put("status", StatusConstant.ENABLE);
-        Integer sold = setmealMapper.countByMap(map);
+        Integer onsale = setmealMapper.countByMap(map);
 
         map.put("status", StatusConstant.DISABLE);
-        Integer discontinued = setmealMapper.countByMap(map);
+        Integer banned = setmealMapper.countByMap(map);
 
         return SetmealOverViewVO.builder()
-                .sold(sold)
-                .discontinued(discontinued)
+                .sold(onsale)
+                .discontinued(banned)
                 .build();
     }
 }
