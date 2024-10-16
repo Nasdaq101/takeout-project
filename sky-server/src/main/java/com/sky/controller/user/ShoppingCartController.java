@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/user/shoppingCart")
 @Slf4j
-@Api(tags="user end - shopping cart interface")
+@Api(tags="user end - ShoppingCart API Endpoints")
 public class ShoppingCartController {
 
     @Autowired

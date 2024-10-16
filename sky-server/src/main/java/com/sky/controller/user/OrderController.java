@@ -1,5 +1,6 @@
 package com.sky.controller.user;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController("userOrderController")
 @RequestMapping("/user/order")
 @Slf4j
+@Api(tags = "user end - Order View API Endpoints")
 public class OrderController {
 
     @Autowired

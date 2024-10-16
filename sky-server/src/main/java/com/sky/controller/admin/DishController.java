@@ -19,7 +19,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("admin/dish")
-@Api(tags = "dish interface")
+@Api(tags = "Dish API Endpoints")
 @Slf4j
 public class DishController {
 

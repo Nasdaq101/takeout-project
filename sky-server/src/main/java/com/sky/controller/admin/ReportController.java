@@ -23,7 +23,7 @@ import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/admin/report")
-@Api(tags="data statistics interface")
+@Api(tags="Data Statistics API Endpoints")
 @Slf4j
 public class ReportController {
     @Autowired

@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController("userCategoryController")
 @RequestMapping("/user/category")
-@Api(tags = "user end - category interface")
+@Api(tags = "user end - Category API Endpoints")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;

@@ -18,7 +18,7 @@ import java.util.List;
 @RestController("userDishController")
 @RequestMapping("/user/dish")
 @Slf4j
-@Api(tags = "user end - dish view interface")
+@Api(tags = "user end - Dish View API Endpoints")
 public class DishController {
     @Autowired
     private DishService dishService;

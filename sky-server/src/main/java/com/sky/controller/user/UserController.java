@@ -19,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user/user")
-@Api(tags="C-user interface")
+@Api(tags="C-user API Endpoints")
 @Slf4j
 public class UserController {
     @Autowired

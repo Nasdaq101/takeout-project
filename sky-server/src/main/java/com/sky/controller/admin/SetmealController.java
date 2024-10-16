@@ -2,6 +2,7 @@ package com.sky.controller.admin;
 
 import java.util.List;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/admin/setmeal")
+@Api(tags = "Setmeal API Endpoints")
 @Slf4j
 public class SetmealController {
 

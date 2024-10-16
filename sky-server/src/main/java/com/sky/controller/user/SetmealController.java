@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController("userSetmealController")
 @RequestMapping("/user/setmeal")
-@Api(tags = "user end - setmeal interface")
+@Api(tags = "user end - setmeal API Endpoints")
 public class SetmealController {
     @Autowired
     private SetmealService setmealService;

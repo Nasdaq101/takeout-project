@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController("adminShopController")
 @RequestMapping("/admin/shop")
-@Api(tags = "shop interface")
+@Api(tags = "Shop API Endpoints")
 @Slf4j
 public class ShopController {
 
