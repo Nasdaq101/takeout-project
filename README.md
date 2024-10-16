@@ -1,6 +1,6 @@
-Sky Take-Out
+Sky Takeout 
 #
-This project is an online food delivery ordering system developed using the Spring Boot framework.
+The project is an online food ordering system developed using the Spring Boot framework.
 #
 Technology Stack
 
@@ -47,8 +47,8 @@ Development Environment Setup
     }
     
     upstream webservers {
-    server 127.0.0.1:8080 weight=90;
-    #server 127.0.0.1:8088 weight=10;
+    server 127.0.0.1:8081 weight=50;
+    #server 127.0.0.1:8088 weight=50;
     }
     
     server {
@@ -62,7 +62,7 @@ Development Environment Setup
 
     # Reverse proxy for admin requests
     location /api/ {
-        proxy_pass http://localhost:8080/admin/;
+        proxy_pass http://localhost:8081/admin/;
         #proxy_pass http://webservers/admin/;
     }
 
@@ -86,7 +86,7 @@ Development Environment Setup
     }
     }
 
-5. Clone the project locally: git clone https://github.com/Sonder-MX/sky-take-out.git
+5. Clone the project locally: git clone https://github.com/Nasdaq101/sky-take-out.git
 
 
 6. Modify the configuration file application.yml:
