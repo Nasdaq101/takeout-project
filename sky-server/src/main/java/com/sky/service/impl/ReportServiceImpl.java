@@ -5,15 +5,20 @@ import com.sky.entity.Orders;
 import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserMapper;
 import com.sky.service.ReportService;
-import com.sky.vo.OrderReportVO;
-import com.sky.vo.SalesTop10ReportVO;
-import com.sky.vo.TurnoverReportVO;
-import com.sky.vo.UserReportVO;
+import com.sky.service.WorkspaceService;
+import com.sky.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -29,6 +34,9 @@ public class ReportServiceImpl implements ReportService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private WorkspaceService workspaceService;
 
     @Override
     public TurnoverReportVO getTurnoverStatistics(LocalDate begin, LocalDate end) {
@@ -136,5 +144,56 @@ public class ReportServiceImpl implements ReportService {
                 .nameList(StringUtils.join(names, ","))
                 .numberList(StringUtils.join(numbers,","))
                 .build();
+    }
+
+    @Override
+    public void exportExcel(HttpServletResponse resp) {
+        //get data from sql - 30 days
+        LocalDate begin = LocalDate.now().minusDays(30);
+        LocalDate end = LocalDate.now().minusDays(1);
+        BusinessDataVO businessDataVO = workspaceService.getBusinessData(LocalDateTime.of(begin, LocalTime.MIN), LocalDateTime.of(end, LocalTime.MAX));
+
+        //write data into excel
+        InputStream in = this.getClass().getClassLoader().getResourceAsStream("templates/template.xlsx");
+        try {
+            XSSFWorkbook excel = new XSSFWorkbook(in);
+            XSSFSheet report = excel.getSheetAt(0);
+            //XSSFSheet report = excel.getSheet("report.xlsx");
+
+            report.getRow(1).getCell(1).setCellValue("time: "+ begin + " to " + end);
+            report.getRow(3).getCell(2).setCellValue(businessDataVO.getTurnover());
+            report.getRow(3).getCell(4).setCellValue(businessDataVO.getOrderCompletionRate());
+            report.getRow(3).getCell(6).setCellValue(businessDataVO.getNewUsers());
+            report.getRow(4).getCell(2).setCellValue(businessDataVO.getValidOrderCount());
+            report.getRow(4).getCell(4).setCellValue(businessDataVO.getUnitPrice());
+
+            for (int i = 0; i < 30; i++) {
+                LocalDate date = begin.plusDays(i);
+                workspaceService.getBusinessData(LocalDateTime.of(date,LocalTime.MIN), LocalDateTime.of(date,LocalTime.MAX));
+                report.getRow(i+7).getCell(1).setCellValue(date.toString());
+                report.getRow(i+7).getCell(2).setCellValue(businessDataVO.getTurnover());
+                report.getRow(i+7).getCell(3).setCellValue(businessDataVO.getValidOrderCount());
+                report.getRow(i+7).getCell(4).setCellValue(businessDataVO.getOrderCompletionRate());
+                report.getRow(i+7).getCell(5).setCellValue(businessDataVO.getUnitPrice());
+                report.getRow(i+7).getCell(6).setCellValue(businessDataVO.getNewUsers());
+            }
+
+            //export excel and allow download through output stream
+            ServletOutputStream out = resp.getOutputStream();
+            excel.write(out);
+
+            out.flush();
+            out.close();
+            excel.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e2) {
+                e2.printStackTrace();
+            }
+        }
     }
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
 /**
@@ -57,11 +59,16 @@ public class ReportController {
     }
 
     @GetMapping("/top10")
-    @ApiOperation("top 10")
+    @ApiOperation("TOP 10")
     public Result<SalesTop10ReportVO> top10(
             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end) {
         log.info("top 10: begin={}, end={}", begin, end);
         return Result.success(reportService.getSalesTop10(begin, end));
+    }
+
+    @GetMapping("/export")
+    public void exportExcel(HttpServletResponse resp) {
+        reportService.exportExcel(resp);
     }
 }
