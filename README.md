@@ -1,27 +1,35 @@
-Sky Takeout 
+Takeout Project
 #
-The project is an online food ordering system developed using the Spring Boot framework.
+The project is an online ordering system (for food, flowers, daily necessities, etc.) developed using the Spring Boot framework. The system is divided into two main components: the admin portal and the user interface. Key features include menu management, order processing, employee management, and functionalities for browsing products, placing orders, and making payments.
 #
 Technology Stack
 
 Backend:
 
 	•	Spring Boot
+	•	Spring Task
+	•	Spring Cache
 	•	MyBatis
+    •	HttpClient
+    •	WebSocket
+    •	JWT
+    •	Nginx
+	•	Lombok
 
 Database
 
 	•	MySQL
-	•	Redis
+	•	Redis  
 
 Frontend:
 
 	•	Vue
+    •	Wechat-mini
 	•	Uniapp
 	•	ElementUI
     •	EChart
 
-Frontend-Backend Communication
+API:
 
 	•	RESTful API
 #
